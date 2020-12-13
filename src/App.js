@@ -20,13 +20,20 @@ function Profile(props) {
 
 function FavoriteRepos(props) {
   const items = props.data;
-  const listFavorites = items.map((favorites) => <li>{favorites}</li>);
+  const listFavorites = items.map((favorites) => (
+    <li>
+      {favorites}
+      <hr />
+    </li>
+  ));
   return <ul>{listFavorites}</ul>;
 }
 
 function Repos(props) {
   return (
     <div className="Repos">
+      <span>Repositories</span>
+      <p />
       <FavoriteRepos data={props.data} />
     </div>
   );
