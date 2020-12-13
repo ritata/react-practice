@@ -1,0 +1,59 @@
+.App {
+  font-family: sans-serif;
+  border: 1px solid;
+  border-color: red;
+  position: relative;
+  width: 1280px;
+  height: 700px;
+}
+
+.Profile {
+  position: absolute;
+  border: 1px solid;
+  border-color: blueviolet;
+  height: 500px;
+  width: 300px;
+  top: 90px;
+  left: 80px;
+}
+
+.Avatar {
+  position: absolute;
+  /* vertical-align: middle; */
+  border: 1px solid;
+  border-radius: 200px;
+  width: 100%;
+}
+
+.UserInfo {
+  position: absolute;
+  text-align: left;
+  border: 1px solid;
+  width: 100%;
+  bottom: 23%;
+  color: #666666;
+  font-size: 18px;
+}
+
+.UserInfo div {
+  font-size: 14px;
+}
+
+.Repos {
+  position: absolute;
+  border: 1px solid;
+  height: 500px;
+  width: 750px;
+  bottom: 30px;
+  left: 500px;
+  /* text-align: left; */
+}
+
+.Repos li {
+  font-size: 18px;
+  position: absolute;
+  text-align: left;
+  border: 1px solid;
+  width: 100%;
+  color: #00bbff;
+}
