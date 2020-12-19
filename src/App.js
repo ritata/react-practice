@@ -21,7 +21,7 @@ function Profile(props) {
 function FavoriteRepos(props) {
   const items = props.data;
   const listFavorites = items.map((favorites) => (
-    <li>
+    <li key={favorites.toString()}>
       {favorites}
       <hr />
     </li>
