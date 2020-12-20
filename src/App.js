@@ -25,24 +25,7 @@ function Profile(props) {
   );
 }
 
-function FavoriteRepos(props) {
-  const items = props.data;
-  const listFavorites = items.map((favorites, index) => (
-    <li key={index}>
-      {favorites.name}
-      <br />
-      <div className="Description">
-        {favorites.description}
-        <br />
-        Update on <ConvertToDate time={favorites.updateTimestamp} />
-      </div>
-      <hr />
-    </li>
-  ));
-  return <ul>{listFavorites}</ul>;
-}
-
-function MyProjects(props) {
+function Repositories(props) {
   const items = props.data;
   const listProjects = items.map((projects, index) => (
     <li key={index}>
@@ -64,7 +47,7 @@ function Repos(props) {
     <div className="Repos">
       <ul className="Tabs">
         <li>
-          <a href="#Repositories" className="active">
+          <a href="#FavoriteRepos" className="active">
             Repositories
           </a>
         </li>
@@ -73,11 +56,11 @@ function Repos(props) {
         </li>
       </ul>
       <p />
-      <div id="Repositories" className="show active">
-        <FavoriteRepos data={props.favorite} />
+      <div id="FavoriteRepos" className="show active">
+        <Repositories data={props.favorites} />
       </div>
       <div id="MyProjects" className="fade">
-        <MyProjects data={props.project} />
+        <Repositories data={props.projects} />
       </div>
     </div>
   );
@@ -88,8 +71,8 @@ export default function App(props) {
     <div className="App">
       <Profile data={props.userInfo.personalInfo} />
       <Repos
-        favorite={props.userInfo.favoriteRepos}
-        project={props.userInfo.projects}
+        favorites={props.userInfo.favoriteRepos}
+        projects={props.userInfo.projects}
       />
     </div>
   );
