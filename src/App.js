@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import ConvertToDate from "./Util.js";
+import * as util from "./util/util.js";
 
 function Avatar(props) {
   return <img className="Avatar" src={props.pic} alt="avatar" />;
@@ -25,7 +25,7 @@ function Profile(props) {
   );
 }
 
-function Repositories(props) {
+function RepoList(props) {
   const items = props.data;
   const listProjects = items.map((projects, index) => (
     <li key={index}>
@@ -34,7 +34,7 @@ function Repositories(props) {
       <div className="Description">
         {projects.description}
         <br />
-        Update on <ConvertToDate time={projects.updateTimestamp} />
+        Update on {util.convertToDate(projects.updateTimestamp)}
       </div>
       <hr />
     </li>
@@ -57,10 +57,10 @@ function Repos(props) {
       </ul>
       <p />
       <div id="FavoriteRepos" className="show active">
-        <Repositories data={props.favorites} />
+        <RepoList data={props.favorites} />
       </div>
       <div id="MyProjects" className="fade">
-        <Repositories data={props.projects} />
+        <RepoList data={props.projects} />
       </div>
     </div>
   );
