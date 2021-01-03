@@ -42,26 +42,51 @@ function RepoList(props) {
   return <ul>{listProjects}</ul>;
 }
 
+const onClickLink = (e) => {
+  e.preventDefault();
+  window.location.href = e.target.href;
+  window.location.reload();
+};
+
 function Repos(props) {
+  let tabs = window.location.hash;
+  if (tabs.length === 0) {
+    tabs = "#FavoriteRepos";
+  }
+
   return (
     <div className="Repos">
       <ul className="Tabs">
         <li>
-          <a href="#FavoriteRepos" className="active">
+          <a
+            href="#FavoriteRepos"
+            onClick={onClickLink}
+            className={tabs === "#FavoriteRepos" ? "active" : ""}
+          >
             Repositories
           </a>
         </li>
         <li>
-          <a href="#MyProjects">My Projects</a>
+          <a
+            href="#MyProjects"
+            onClick={onClickLink}
+            className={tabs === "#MyProjects" ? "active" : ""}
+          >
+            My Projects
+          </a>
         </li>
       </ul>
       <p />
-      <div id="FavoriteRepos" className="show active">
-        <RepoList data={props.favorites} />
-      </div>
-      <div id="MyProjects" className="fade">
-        <RepoList data={props.projects} />
-      </div>
+      {tabs === "#FavoriteRepos" && (
+        <div id="FavoriteRepos">
+          <RepoList data={props.favorites} />
+        </div>
+      )}
+      {tabs === "#MyProjects" && (
+        <div id="MyProjects">
+          <RepoList data={props.projects} />
+        </div>
+      )}
     </div>
   );
 }

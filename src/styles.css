@@ -50,7 +50,8 @@ ul {
   position: absolute;
   /* border: 1px solid; */
   width: 750px;
-  bottom: 0px;
+  top: 200px;
+  /* bottom: 0px; */
   left: 500px;
 }
 
