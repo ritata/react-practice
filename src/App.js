@@ -49,6 +49,7 @@ const onClickLink = (e) => {
 };
 
 // TODO: after learn state, use state instead
+// TODO: used for test message
 function Repos(props) {
   const tabs = window.location.hash || '#FavoriteRepos';
   return (
