@@ -1,6 +1,6 @@
-import React from "react";
-import "./styles.css";
-import * as util from "./util/util.js";
+import React from 'react';
+import './styles.css';
+import * as util from './util/util.js';
 
 function Avatar(props) {
   return <img className="Avatar" src={props.pic} alt="avatar" />;
@@ -48,8 +48,9 @@ const onClickLink = (e) => {
   window.location.reload();
 };
 
+// TODO: after learn state, use state instead
 function Repos(props) {
-  const tabs = window.location.hash || "#FavoriteRepos";
+  const tabs = window.location.hash || '#FavoriteRepos';
   return (
     <div className="Repos">
       <ul className="Tabs">
@@ -57,7 +58,7 @@ function Repos(props) {
           <a
             href="#FavoriteRepos"
             onClick={onClickLink}
-            className={tabs === "#FavoriteRepos" ? "active" : ""}
+            className={tabs === '#FavoriteRepos' ? 'active' : ''}
           >
             Repositories
           </a>
@@ -66,19 +67,19 @@ function Repos(props) {
           <a
             href="#MyProjects"
             onClick={onClickLink}
-            className={tabs === "#MyProjects" ? "active" : ""}
+            className={tabs === '#MyProjects' ? 'active' : ''}
           >
             My Projects
           </a>
         </li>
       </ul>
       <p />
-      {tabs === "#FavoriteRepos" && (
+      {tabs === '#FavoriteRepos' && (
         <div id="FavoriteRepos">
           <RepoList data={props.favorites} />
         </div>
       )}
-      {tabs === "#MyProjects" && (
+      {tabs === '#MyProjects' && (
         <div id="MyProjects">
           <RepoList data={props.projects} />
         </div>
