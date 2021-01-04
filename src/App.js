@@ -49,11 +49,7 @@ const onClickLink = (e) => {
 };
 
 function Repos(props) {
-  let tabs = window.location.hash;
-  if (tabs.length === 0) {
-    tabs = "#FavoriteRepos";
-  }
-
+  const tabs = window.location.hash || "#FavoriteRepos";
   return (
     <div className="Repos">
       <ul className="Tabs">
