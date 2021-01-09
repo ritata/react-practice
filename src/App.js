@@ -42,49 +42,56 @@ function RepoList(props) {
   return <ul>{listProjects}</ul>;
 }
 
-const onClickLink = (e) => {
-  e.preventDefault();
-  window.location.href = e.target.href;
-  window.location.reload();
-};
+class Repos extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { tabs: window.location.hash || "#FavoriteRepos" };
+    this.onClickLink = this.onClickLink.bind(this);
+  }
 
-function Repos(props) {
-  const tabs = window.location.hash || "#FavoriteRepos";
-  return (
-    <div className="Repos">
-      <ul className="Tabs">
-        <li>
-          <a
-            href="#FavoriteRepos"
-            onClick={onClickLink}
-            className={tabs === "#FavoriteRepos" ? "active" : ""}
-          >
-            Repositories
-          </a>
-        </li>
-        <li>
-          <a
-            href="#MyProjects"
-            onClick={onClickLink}
-            className={tabs === "#MyProjects" ? "active" : ""}
-          >
-            My Projects
-          </a>
-        </li>
-      </ul>
-      <p />
-      {tabs === "#FavoriteRepos" && (
-        <div id="FavoriteRepos">
-          <RepoList data={props.favorites} />
-        </div>
-      )}
-      {tabs === "#MyProjects" && (
-        <div id="MyProjects">
-          <RepoList data={props.projects} />
-        </div>
-      )}
-    </div>
-  );
+  onClickLink = (e) => {
+    e.preventDefault();
+    window.location.hash = e.target.hash;
+    this.setState({ tabs: window.location.hash });
+  };
+
+  render() {
+    return (
+      <div className="Repos">
+        <ul className="Tabs">
+          <li>
+            <a
+              href="#FavoriteRepos"
+              onClick={this.onClickLink}
+              className={this.state.tabs === "#FavoriteRepos" ? "active" : ""}
+            >
+              Repositories
+            </a>
+          </li>
+          <li>
+            <a
+              href="#MyProjects"
+              onClick={this.onClickLink}
+              className={this.state.tabs === "#MyProjects" ? "active" : ""}
+            >
+              My Projects
+            </a>
+          </li>
+        </ul>
+        <p />
+        {this.state.tabs === "#FavoriteRepos" && (
+          <div id="FavoriteRepos">
+            <RepoList data={this.props.favorites} />
+          </div>
+        )}
+        {this.state.tabs === "#MyProjects" && (
+          <div id="MyProjects">
+            <RepoList data={this.props.projects} />
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default function App(props) {
