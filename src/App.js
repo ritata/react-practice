@@ -1,6 +1,6 @@
-import React from "react";
-import "./styles.css";
-import * as util from "./util/util.js";
+import React from 'react';
+import './styles.css';
+import * as util from './util/util.js';
 
 function Avatar(props) {
   return <img className="Avatar" src={props.pic} alt="avatar" />;
@@ -42,17 +42,20 @@ function RepoList(props) {
   return <ul>{listProjects}</ul>;
 }
 
+const TAB = {
+  FAVORITE: 'FAVORITE',
+  MYPROJECT: 'MYPROJECT'
+};
+
 class Repos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tabs: window.location.hash || "#FavoriteRepos" };
-    this.onClickLink = this.onClickLink.bind(this);
+    this.state = { tab: TAB.FAVORITE };
   }
 
-  onClickLink = (e) => {
+  onClickLink = (tab) => (e) => {
     e.preventDefault();
-    window.location.hash = e.target.hash;
-    this.setState({ tabs: window.location.hash });
+    this.setState({ tab });
   };
 
   render() {
@@ -62,8 +65,8 @@ class Repos extends React.Component {
           <li>
             <a
               href="#FavoriteRepos"
-              onClick={this.onClickLink}
-              className={this.state.tabs === "#FavoriteRepos" ? "active" : ""}
+              onClick={this.onClickLink(TAB.FAVORITE)}
+              className={this.state.tab === TAB.FAVORITE ? 'active' : ''}
             >
               Repositories
             </a>
@@ -71,20 +74,20 @@ class Repos extends React.Component {
           <li>
             <a
               href="#MyProjects"
-              onClick={this.onClickLink}
-              className={this.state.tabs === "#MyProjects" ? "active" : ""}
+              onClick={this.onClickLink(TAB.MYPROJECT)}
+              className={this.state.tab === TAB.MYPROJECT ? 'active' : ''}
             >
               My Projects
             </a>
           </li>
         </ul>
         <p />
-        {this.state.tabs === "#FavoriteRepos" && (
+        {this.state.tab === TAB.FAVORITE && (
           <div id="FavoriteRepos">
             <RepoList data={this.props.favorites} />
           </div>
         )}
-        {this.state.tabs === "#MyProjects" && (
+        {this.state.tab === TAB.MYPROJECT && (
           <div id="MyProjects">
             <RepoList data={this.props.projects} />
           </div>
